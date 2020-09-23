@@ -1,0 +1,52 @@
+pack\_and\_doc.submodule.AnotherClass
+=====================================
+
+.. currentmodule:: pack_and_doc.submodule
+
+.. autoclass:: AnotherClass
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AnotherClass.__delattr__
+      ~AnotherClass.__dir__
+      ~AnotherClass.__eq__
+      ~AnotherClass.__format__
+      ~AnotherClass.__ge__
+      ~AnotherClass.__getattribute__
+      ~AnotherClass.__gt__
+      ~AnotherClass.__hash__
+      ~AnotherClass.__init__
+      ~AnotherClass.__init_subclass__
+      ~AnotherClass.__le__
+      ~AnotherClass.__lt__
+      ~AnotherClass.__ne__
+      ~AnotherClass.__new__
+      ~AnotherClass.__reduce__
+      ~AnotherClass.__reduce_ex__
+      ~AnotherClass.__repr__
+      ~AnotherClass.__setattr__
+      ~AnotherClass.__sizeof__
+      ~AnotherClass.__str__
+      ~AnotherClass.__subclasshook__
+      ~AnotherClass.another_function
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AnotherClass.__dict__
+      ~AnotherClass.__doc__
+      ~AnotherClass.__module__
+      ~AnotherClass.__weakref__
+   
+   

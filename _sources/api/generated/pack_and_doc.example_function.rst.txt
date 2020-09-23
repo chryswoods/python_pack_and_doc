@@ -1,0 +1,6 @@
+pack\_and\_doc.example\_function
+================================
+
+.. currentmodule:: pack_and_doc
+
+.. autofunction:: example_function

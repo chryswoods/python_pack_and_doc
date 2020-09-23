@@ -1,0 +1,6 @@
+pack\_and\_doc.submodule.fast\_function
+=======================================
+
+.. currentmodule:: pack_and_doc.submodule
+
+.. autofunction:: fast_function

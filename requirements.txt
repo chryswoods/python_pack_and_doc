@@ -1,2 +1,0 @@
-# Include your run-time requirements here
-rich>=4.2.0

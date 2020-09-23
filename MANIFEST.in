@@ -1,7 +1,0 @@
-include requirements*.txt
-include LICENSE.txt
-include versioneer.py
-include src/pack_and_doc/example_library/*
-include src/pack_and_doc/submodule/*.pyx
-include src/pack_and_doc/*.pyx
-include src/pack_and_doc/disable_openmp/omp.h

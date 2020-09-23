@@ -1,0 +1,53 @@
+pack\_and\_doc.ExampleClass
+===========================
+
+.. currentmodule:: pack_and_doc
+
+.. autoclass:: ExampleClass
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ExampleClass.__delattr__
+      ~ExampleClass.__dir__
+      ~ExampleClass.__eq__
+      ~ExampleClass.__format__
+      ~ExampleClass.__ge__
+      ~ExampleClass.__getattribute__
+      ~ExampleClass.__gt__
+      ~ExampleClass.__hash__
+      ~ExampleClass.__init__
+      ~ExampleClass.__init_subclass__
+      ~ExampleClass.__le__
+      ~ExampleClass.__lt__
+      ~ExampleClass.__ne__
+      ~ExampleClass.__new__
+      ~ExampleClass.__reduce__
+      ~ExampleClass.__reduce_ex__
+      ~ExampleClass.__repr__
+      ~ExampleClass.__setattr__
+      ~ExampleClass.__sizeof__
+      ~ExampleClass.__str__
+      ~ExampleClass.__subclasshook__
+      ~ExampleClass._hidden_func
+      ~ExampleClass.func
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ExampleClass.__dict__
+      ~ExampleClass.__doc__
+      ~ExampleClass.__module__
+      ~ExampleClass.__weakref__
+   
+   

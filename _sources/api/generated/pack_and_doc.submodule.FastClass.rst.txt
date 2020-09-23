@@ -1,0 +1,52 @@
+pack\_and\_doc.submodule.FastClass
+==================================
+
+.. currentmodule:: pack_and_doc.submodule
+
+.. autoclass:: FastClass
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FastClass.__delattr__
+      ~FastClass.__dir__
+      ~FastClass.__eq__
+      ~FastClass.__format__
+      ~FastClass.__ge__
+      ~FastClass.__getattribute__
+      ~FastClass.__gt__
+      ~FastClass.__hash__
+      ~FastClass.__init__
+      ~FastClass.__init_subclass__
+      ~FastClass.__le__
+      ~FastClass.__lt__
+      ~FastClass.__ne__
+      ~FastClass.__new__
+      ~FastClass.__reduce__
+      ~FastClass.__reduce_ex__
+      ~FastClass.__repr__
+      ~FastClass.__setattr__
+      ~FastClass.__sizeof__
+      ~FastClass.__str__
+      ~FastClass.__subclasshook__
+      ~FastClass.func
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FastClass.__dict__
+      ~FastClass.__doc__
+      ~FastClass.__module__
+      ~FastClass.__weakref__
+   
+   
