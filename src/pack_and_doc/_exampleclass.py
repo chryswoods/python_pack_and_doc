@@ -12,3 +12,7 @@ class ExampleClass:
     def func(self):
         """This is an example function"""
         print("Calling ExampleClass.func()")
+
+    def _hidden_func(self):
+        """This is a hidden function"""
+        print("Calling ExampleClass._hidden_func()")
