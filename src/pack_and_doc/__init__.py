@@ -36,3 +36,8 @@ from ._version import get_versions as _get_versions
 
 _v = _get_versions()
 __version__ = _v['version']
+__branch__ = _v['branch']
+__repository__ = _v['repository']
+__revisionid__ = _v['full-revisionid']
+del _v
+del _get_versions
