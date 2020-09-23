@@ -1,0 +1,15 @@
+/.vscode
+/build
+src/pack_and_doc/*.c
+src/pack_and_doc/submodule/*.c
+src/pack_and_doc/*.so
+src/pack_and_doc/submodule/*.so
+__pycache__
+/dist/*.tar.gz
+/dist/*.whl
+/src/pack_and_doc.egg-info
+/.pytest_cache
+/*.pyc
+/doc/build
+/doc/source/api/generated
+/.coverage

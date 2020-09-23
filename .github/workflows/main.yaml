@@ -1,0 +1,118 @@
+name: Build
+
+on:
+  push:
+    branches: [main, devel]
+    tags:
+      - "*"
+  pull_request:
+    branches: [main, devel]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.config.os }}
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    strategy:
+      max-parallel: 4
+      fail-fast: false
+      matrix:
+        python-version: [3.7, 3.8]
+        config:
+          - {
+              name: "Windows Latest MSVC",
+              os: windows-latest,
+              build_type: "Release",
+              cc: "cl",
+              cxx: "cl",
+              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            }
+          - {
+              name: "Ubuntu Latest GCC",
+              os: ubuntu-latest,
+              build_type: "Release",
+              cc: "gcc",
+              cxx: "g++",
+            }
+          - {
+              name: "macOS Latest clang",
+              os: macos-latest,
+              build_type: "Release",
+              cc: "clang",
+              cxx: "clang++",
+              PACK_AND_DOC_DISABLE_OPENMP: 1,
+            }
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Get tags
+        run: python actions/get_tags.py
+      - name: Print branch information
+        run: echo ${{github.ref}}
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      - name: Install package
+        run: make -j 4
+        continue-on-error: true
+      - name: Double-check install
+        run: make
+      - name: Run tests
+        run: make test
+        env:
+          CYTHONIZE: 1
+      - name: Install packaging requirements
+        run: pip install --upgrade setuptools wheel
+        if: github.event_name == 'push'
+      - name: Build Docs
+        run: |
+          make install
+          python actions/build_docs.py
+        if: matrix.python-version == 3.8 && matrix.config.os == 'ubuntu-latest' && github.event_name == 'push'
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+        if: matrix.python-version == 3.8 && matrix.config.os == 'ubuntu-latest' && github.event_name == 'push'
+      - name: Assemble Website
+        run: |
+          python actions/assemble_website.py
+          python actions/deduplicate_website.py
+          python actions/gitupdate_website.py
+        if: matrix.python-version == 3.8 && matrix.config.os == 'ubuntu-latest' && github.event_name == 'push'
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          branch: "gh-pages"
+          directory: "gh-pages"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        if: matrix.python-version == 3.8 && matrix.config.os == 'ubuntu-latest' && github.event_name == 'push'
+      - name: Make bdist package
+        run: |
+          python setup.py bdist_wheel
+        env:
+          CYTHONIZE: 1
+        if: github.event_name == 'push' && (matrix.config.os == 'windows-latest' || matrix.config.os == 'macos-latest')
+      - name: Make manylinux package
+        # this is run by python 3.8, but it actually builds 3.7 and 3.8 bdists
+        run: |
+          python actions/build_manylinux.py
+        if: github.event_name == 'push' && matrix.python-version == 3.8 && matrix.config.os == 'ubuntu-latest'
+      - name: Make sdist package
+        # Give Python 3.7 the sdist, so that this has something to upload
+        run: python setup.py sdist
+        env:
+          CYTHONIZE: 1
+        if: github.event_name == 'push' && matrix.python-version == 3.7 && matrix.config.os == 'ubuntu-latest'
+      - name: Upload sdist/bdist package(s)
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: ./dist
+        if: github.event_name == 'push'
